@@ -7,7 +7,6 @@ import com.ajihsu.springbootmall.model.Product;
 import com.ajihsu.springbootmall.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.error.DefaultErrorViewResolver;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +18,6 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-    @Autowired
-    private DefaultErrorViewResolver defaultErrorViewResolver;
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getProducts(
