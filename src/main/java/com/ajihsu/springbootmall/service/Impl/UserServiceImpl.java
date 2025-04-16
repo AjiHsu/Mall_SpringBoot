@@ -1,6 +1,7 @@
 package com.ajihsu.springbootmall.service.Impl;
 
 import com.ajihsu.springbootmall.dao.UserDao;
+import com.ajihsu.springbootmall.dto.UserLoginRequest;
 import com.ajihsu.springbootmall.dto.UserRegisterRequest;
 import com.ajihsu.springbootmall.model.User;
 import com.ajihsu.springbootmall.service.UserService;
@@ -34,5 +35,22 @@ public class UserServiceImpl implements UserService {
         }
         // create account
         return userDao.createUser(userRegisterRequest);
+    }
+
+    @Override
+    public User login(UserLoginRequest userLoginRequest) {
+        User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+
+        if (user == null) {
+            log.warn("this email {} has not been registered", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        if (user.getPassword().equals(userLoginRequest.getPassword())) {
+            return user;
+        } else {
+            log.warn("email {} does not match password", userLoginRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
     }
 }
