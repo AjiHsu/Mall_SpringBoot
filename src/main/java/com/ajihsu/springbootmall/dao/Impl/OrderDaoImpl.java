@@ -124,6 +124,22 @@ public class OrderDaoImpl implements OrderDao {
         namedParameterJdbcTemplate.batchUpdate(sql, parameterSources);
     }
 
+    @Override
+    public void deleteOrderByOrderId(Integer orderId) {
+        String sql = "DELETE FROM `order` WHERE order_id = :orderId";
+        Map<String, Object> map = new HashMap<>();
+        map.put("orderId", orderId);
+        namedParameterJdbcTemplate.update(sql, map);
+    }
+
+    @Override
+    public void deleteOrderItemsByOrderId(Integer orderId) {
+        String sql = "DELETE FROM order_item WHERE order_id = :orderId";
+        Map<String, Object> map = new HashMap<>();
+        map.put("orderId", orderId);
+        namedParameterJdbcTemplate.update(sql, map);
+    }
+
     private String addFilteringSql(String sql, Map<String, Object> map, OrderQueryParams orderQueryParams) {
         if (orderQueryParams.getUserId() != null) {
             sql += " AND user_id = :userId";

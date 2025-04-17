@@ -13,4 +13,6 @@ public interface OrderDao {
     List<OrderItem> getOrderItemsByOrderId(Integer orderId);
     Integer createOrder(Integer userId, Integer totalAmount);
     void createOrderItems(Integer orderId, List<OrderItem> orderItemList);
+    void deleteOrderByOrderId(Integer orderId);
+    void deleteOrderItemsByOrderId(Integer orderId);
 }

@@ -12,4 +12,5 @@ public interface OrderService {
     List<Order> getOrders(OrderQueryParams orderQueryParams);
     Order getOrderById(Integer orderId);
     Integer createOrder(Integer userId, CreateOrderRequest createOrderRequest);
+    void deleteOrder(Integer userId, Integer orderId);
 }

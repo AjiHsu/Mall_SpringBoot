@@ -67,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
         // check the existence of user
         User user = userDao.getUserById(userId);
         if (user == null) {
-            log.warn("the userId {} is not exist", userId);
+            log.warn("the userId {} does not exist", userId);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
@@ -80,7 +80,7 @@ public class OrderServiceImpl implements OrderService {
 
             // check the existence of the product and if it has enough stock
             if (product == null) {
-                log.warn("the product {} not exists", buyItem.getProductId());
+                log.warn("the product {} does not exists", buyItem.getProductId());
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
             } else if (product.getStock() < buyItem.getQuantity()) {
                 log.warn("the product {} doesn't has enough stock. remaining: {}, request: {}",
@@ -110,5 +110,29 @@ public class OrderServiceImpl implements OrderService {
         orderDao.createOrderItems(orderId, orderItemList);
 
         return orderId;
+    }
+
+    @Transactional
+    @Override
+    public void deleteOrder(Integer userId, Integer orderId) {
+        Order order = orderDao.getOrderById(orderId);
+        if (order == null) {
+            log.warn("the orderId {} does not exist", orderId);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else if (order.getUserId() != userId) {
+            log.warn("the user {} doesn't has {} order", userId, orderId);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            List<OrderItem> orderItemList = orderDao.getOrderItemsByOrderId(orderId);
+
+            // give back to the stock
+            for (var orderItem : orderItemList) {
+                Product product = productDao.getProductById(orderItem.getProductId());
+                productDao.updateStock(orderItem.getProductId(), product.getStock() + orderItem.getQuantity());
+            }
+
+            orderDao.deleteOrderByOrderId(orderId);
+            orderDao.deleteOrderItemsByOrderId(orderId);
+        }
     }
 }
