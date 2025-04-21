@@ -17,8 +17,13 @@ import java.util.List;
 
 @RestController
 public class OrderController {
+
+    private final OrderService orderService;
+
     @Autowired
-    private OrderService orderService;
+    public OrderController(final OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @GetMapping("/users/{userId}/orders")
     public ResponseEntity<Page<Order>> getOrders (

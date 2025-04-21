@@ -20,8 +20,12 @@ import java.util.Map;
 @Component
 public class ProductDaoImpl implements ProductDao {
 
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
     @Autowired
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    public ProductDaoImpl(final NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     @Override
     public Integer countProducts(ProductQueryParams productQueryParams) {

@@ -21,8 +21,12 @@ import java.util.List;
 @RestController
 public class ProductController {
 
+    private final ProductService productService;
+
     @Autowired
-    private ProductService productService;
+    public ProductController(final ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/products")
     public ResponseEntity<Page<Product>> getProducts(

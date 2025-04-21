@@ -19,8 +19,12 @@ import java.util.Map;
 @Component
 public class UserDaoImpl implements UserDao {
 
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
     @Autowired
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    public UserDaoImpl(final NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     @Override
     public User getUserById(Integer userId) {

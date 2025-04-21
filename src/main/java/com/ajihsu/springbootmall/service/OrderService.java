@@ -3,7 +3,6 @@ package com.ajihsu.springbootmall.service;
 import com.ajihsu.springbootmall.dto.CreateOrderRequest;
 import com.ajihsu.springbootmall.dto.OrderQueryParams;
 import com.ajihsu.springbootmall.model.Order;
-import com.ajihsu.springbootmall.model.OrderItem;
 
 import java.util.List;
 

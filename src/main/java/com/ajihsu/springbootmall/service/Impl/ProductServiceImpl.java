@@ -13,8 +13,12 @@ import java.util.List;
 @Component
 public class ProductServiceImpl implements ProductService {
 
+    private final ProductDao productDao;
+
     @Autowired
-    private ProductDao productDao;
+    public ProductServiceImpl(final ProductDao productDao) {
+        this.productDao = productDao;
+    }
 
     @Override
     public Integer countProducts(ProductQueryParams productQueryParams) {
