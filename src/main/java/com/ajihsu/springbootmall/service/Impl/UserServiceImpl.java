@@ -18,8 +18,12 @@ public class UserServiceImpl implements UserService {
 
     private final static Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
+    private final UserDao userDao;
+
     @Autowired
-    private UserDao userDao;
+    public UserServiceImpl(final UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     public User getUserById(Integer userId) {

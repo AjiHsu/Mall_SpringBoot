@@ -25,14 +25,18 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private final static Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 
-    @Autowired
-    private OrderDao orderDao;
+    private final OrderDao orderDao;
+
+    private final ProductDao productDao;
+
+    private final UserDao userDao;
 
     @Autowired
-    private ProductDao productDao;
-
-    @Autowired
-    private UserDao userDao;
+    public OrderServiceImpl(final OrderDao orderDao, final ProductDao productDao, final UserDao userDao) {
+        this.orderDao = orderDao;
+        this.productDao = productDao;
+        this.userDao = userDao;
+    }
 
     @Override
     public Integer countOrder(OrderQueryParams orderQueryParams) {
@@ -119,7 +123,7 @@ public class OrderServiceImpl implements OrderService {
         if (order == null) {
             log.warn("the orderId {} does not exist", orderId);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        } else if (order.getUserId() != userId) {
+        } else if (!order.getUserId().equals(userId)) {
             log.warn("the user {} doesn't has {} order", userId, orderId);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } else {

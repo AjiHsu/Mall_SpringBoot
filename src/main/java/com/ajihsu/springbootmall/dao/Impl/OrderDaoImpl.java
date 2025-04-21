@@ -20,8 +20,13 @@ import java.util.Map;
 
 @Component
 public class OrderDaoImpl implements OrderDao {
+
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
     @Autowired
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    public OrderDaoImpl(final NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     @Override
     public Integer countOrder(OrderQueryParams orderQueryParams) {
