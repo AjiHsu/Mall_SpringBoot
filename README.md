@@ -6,10 +6,6 @@
 
 ---
 
-[TOC]
-
----
-
 # API
 
 ## Product
