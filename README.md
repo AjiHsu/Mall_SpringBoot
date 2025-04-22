@@ -25,7 +25,7 @@ DELETE-->deleteProduct;
 
 ### Request And Url
 
-| method | query         | url                                          | parameters         | request Body   |
+| method | query         | url                                          | parameters         | request body   |
 | ------ |:------------- |:-------------------------------------------- |:------------------ |:-------------- |
 | GET    | getProduct    | `http://localhost:8080/products/{productId}` | ProductQueryParams | x              |
 | GET    | getProducts   | `http://localhost:8080/products`             | x                  | x              |
@@ -63,7 +63,7 @@ POST-->login
 
 ### Request And Url
 
-| method | query    | url                                    | parameters | request Body        |
+| method | query    | url                                    | parameters | request body        |
 | ------ |:-------- |:-------------------------------------- |:---------- |:------------------- |
 | POST   | register | `http://localhost:8080/users/register` | x          | UserRegisterRequest |
 | POST   | login    | `http://localhost:8080/users/login`    | x          | UserLoginRequest    |
@@ -95,7 +95,7 @@ DELETE-->deleteOrder
 
 
 
-| method | query       | url                                                 | parameters       | request Body       |
+| method | query       | url                                                 | parameters       | request body       |
 | ------ |:----------- |:--------------------------------------------------- |:---------------- |:------------------ |
 | GET    | getOrders   | `http://localhost:8080/users/{userId}/orders`       | OrderQueryParams | x                  |
 | POST   | createOrder | `http://localhost:8080/users/{userId}/orders`       | x                | CreateOrderRequest |
@@ -108,4 +108,4 @@ DELETE-->deleteOrder
     * Integer limit
     * Integer offset
 * CreateOrderRequest
-    * \[NotEmpty\]List<BuyItem> buyItemList;
+    * \[NotEmpty\]List<BuyItem> buyItemList
