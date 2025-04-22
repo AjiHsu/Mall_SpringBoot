@@ -95,11 +95,11 @@ DELETE-->deleteOrder
 
 
 
-| method | query       | url                                                 | parameters       | request body       |
-| ------ |:----------- |:--------------------------------------------------- |:---------------- |:------------------ |
-| GET    | getOrders   | `http://localhost:8080/users/{userId}/orders`       | OrderQueryParams | x                  |
-| POST   | createOrder | `http://localhost:8080/users/{userId}/orders`       | x                | CreateOrderRequest |
-| DELETE | deleteOrder | `http://localhost:8080/users/{userId}/orders/orderId` | x                | x                  |
+| method | query       | url                                                     | parameters       | request body       |
+| ------ |:----------- |:------------------------------------------------------- |:---------------- |:------------------ |
+| GET    | getOrders   | `http://localhost:8080/users/{userId}/orders`           | OrderQueryParams | x                  |
+| POST   | createOrder | `http://localhost:8080/users/{userId}/orders`           | x                | CreateOrderRequest |
+| DELETE | deleteOrder | `http://localhost:8080/users/{userId}/orders/{orderId}` | x                | x                  |
 
 ### Dto
 
